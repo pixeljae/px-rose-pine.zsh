@@ -8,6 +8,10 @@
 # [Powerline-patched font](https://gist.github.com/1595572).
 #
 
+
+#### Rose Pine colors
+ROSE_BASE='#191724'
+
 ### Segments of the prompt, default order declaration
 
 typeset -aHg AGNOSTER_PROMPT_SEGMENTS=(
@@ -102,7 +106,7 @@ prompt_git() {
 #### EDITED
 # Dir: current working directory
 prompt_dir() {
-  prompt_segment black $PRIMARY_FG ' %~ ' # Original Value Blue
+  prompt_segment $ROSE_BASE $PRIMARY_FG ' %~ ' # Original Value Blue
 }
 
 # Status:
