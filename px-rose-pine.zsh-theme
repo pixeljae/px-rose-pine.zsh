@@ -84,7 +84,7 @@ prompt_context() {
   local user=`whoami`
 
   if [[ "$user" != "$DEFAULT_USER" || -n "$SSH_CONNECTION" ]]; then
-    prompt_segment $PRIMARY_FG default " %(!.%{%F{$RP_GOLD}%}.)$user@%m "
+    prompt_segment $PRIMARY_FG default " %(!.%{%F{$RP_FOAM}%}.)$user@%m "
   fi
 }
 
@@ -100,7 +100,7 @@ prompt_git() {
       color=$RP_LOVE
       ref="${ref} $PLUSMINUS"
     else
-      color=$RP_GOLD
+      color=$RP_ROSE
       ref="${ref} "
     fi
     if [[ "${ref/.../}" == "$ref" ]]; then
@@ -138,7 +138,7 @@ prompt_status() {
 #### PX-Note: Can't test this cause no virtualenv on my system :(
 prompt_virtualenv() {
   if [[ -n $VIRTUAL_ENV ]]; then
-    color=$RP_FOAM
+    color=$RP_GOLD
     prompt_segment $color $PRIMARY_FG
     print -Pn " $(basename $VIRTUAL_ENV) "
   fi
