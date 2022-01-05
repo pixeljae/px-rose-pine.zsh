@@ -10,7 +10,8 @@
 
 
 #### Rose Pine colors
-RP_BASE='#26233A'
+RP_BASE='#191724'
+RP_OVERLAY='#26233A'
 RP_LOVE='#EB6F92'
 RP_GOLD='#F6C177'
 RP_ROSE='#EBBCBA'
@@ -35,7 +36,7 @@ typeset -aHg AGNOSTER_PROMPT_SEGMENTS=(
 
 CURRENT_BG='NONE'
 if [[ -z "$PRIMARY_FG" ]]; then
-	PRIMARY_FG=$RP_IRIS
+	PRIMARY_FG=$RP_BASE
 fi
 
 # Characters
@@ -98,7 +99,7 @@ prompt_git() {
       color=$RP_GOLD
       ref="${ref} $PLUSMINUS"
     else
-      color=green
+      color=$RP_FOAM
       ref="${ref} "
     fi
     if [[ "${ref/.../}" == "$ref" ]]; then
@@ -113,7 +114,7 @@ prompt_git() {
 #### EDITED
 # Dir: current working directory
 prompt_dir() {
-  prompt_segment $RP_BASE $PRIMARY_FG ' %~ ' # Original Value Blue
+  prompt_segment $RP_OVERLAY $PRIMARY_FG ' %~ ' # Original Value Blue
 }
 
 # Status:
@@ -133,7 +134,7 @@ prompt_status() {
 # Display current virtual environment
 prompt_virtualenv() {
   if [[ -n $VIRTUAL_ENV ]]; then
-    color=cyan
+    color=$RP_ROSE
     prompt_segment $color $PRIMARY_FG
     print -Pn " $(basename $VIRTUAL_ENV) "
   fi
