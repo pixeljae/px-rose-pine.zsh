@@ -115,7 +115,7 @@ prompt_git() {
 # Dir: current working directory
 # Original Value Blue $PRIMARY_FG (Format = ...Background...Foreground...)
 prompt_dir() {
-	prompt_segment $RP_BASE $RP_IRIS ' %~ ' 
+	prompt_segment $RP_OVERLAY $RP_IRIS ' %~ ' 
 }
 
 # Status:
