@@ -107,14 +107,15 @@ prompt_git() {
     else
       ref="$DETACHED ${ref/.../}"
     fi
-    prompt_segment $color $PRIMARY_FG
+    prompt_segment $color $RP_BASE # Original Value $PRIMARY_FG
     print -n " $ref"
   fi
 }
 #### EDITED
 # Dir: current working directory
+# Original Value Blue $PRIMARY_FG (Format = ...Background...Foreground...)
 prompt_dir() {
-  prompt_segment $RP_ROSE $PRIMARY_FG ' %~ ' # Original Value Blue
+	prompt_segment $RP_BASE $RP_IRIS ' %~ ' 
 }
 
 # Status:
@@ -128,7 +129,7 @@ prompt_status() {
   [[ $UID -eq 0 ]] && symbols+="%{%F{$RP_GOLD}%}$LIGHTNING"
   [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="%{%F{cyan}%}$GEAR"
 
-  [[ -n "$symbols" ]] && prompt_segment $PRIMARY_FG default " $symbols "
+  [[ -n "$symbols" ]] && prompt_segment $RP_OVERLAY default " $symbols " # Original value $PRIMARY_FG
 }
 
 # Display current virtual environment
