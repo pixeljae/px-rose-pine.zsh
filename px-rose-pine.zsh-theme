@@ -97,10 +97,10 @@ prompt_git() {
   ref="$vcs_info_msg_0_"
   if [[ -n "$ref" ]]; then
     if is_dirty; then
-      color=$RP_GOLD
+      color=$RP_LOVE
       ref="${ref} $PLUSMINUS"
     else
-      color=$RP_FOAM
+      color=$RP_GOLD
       ref="${ref} "
     fi
     if [[ "${ref/.../}" == "$ref" ]]; then
@@ -108,7 +108,7 @@ prompt_git() {
     else
       ref="$DETACHED ${ref/.../}"
     fi
-    prompt_segment $color $RP_BASE # Original Value $PRIMARY_FG
+    prompt_segment $color $PRIMARY_FG
     print -n " $ref"
   fi
 }
@@ -126,18 +126,19 @@ prompt_dir() {
 prompt_status() {
   local symbols
   symbols=()
-  [[ $RETVAL -ne 0 ]] && symbols+="%{%F{$RP_LOVE}%}$CROSS"
-  [[ $UID -eq 0 ]] && symbols+="%{%F{$RP_GOLD}%}$LIGHTNING"
-  [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="%{%F{cyan}%}$GEAR"
+  [[ $RETVAL -ne 0 ]] && symbols+="%{%F{$RP_LOVE}%}$CROSS" # Orig. Value: red
+  [[ $UID -eq 0 ]] && symbols+="%{%F{$RP_GOLD}%}$LIGHTNING" # Orig. Value: yellow
+  [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="%{%F{$RP_FOAM}%}$GEAR" # Orig. value. cyan
 
-	# Original value $PRIMARY_FG default
-  [[ -n "$symbols" ]] && prompt_segment $RP_OVERLAY default " $symbols "
+	#### PX-Note: Original value is ...$PRIMARY_FG default...
+  [[ -n "$symbols" ]] && prompt_segment $RP_BASE default " $symbols "
 }
 
 # Display current virtual environment
+#### PX-Note: Can't test this cause no virtualenv on my system :(
 prompt_virtualenv() {
   if [[ -n $VIRTUAL_ENV ]]; then
-    color=$RP_ROSE
+    color=$RP_FOAM
     prompt_segment $color $PRIMARY_FG
     print -Pn " $(basename $VIRTUAL_ENV) "
   fi
