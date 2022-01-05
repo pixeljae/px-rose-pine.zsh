@@ -10,7 +10,14 @@
 
 
 #### Rose Pine colors
-ROSE_BASE='#191724'
+RP_BASE='#26233A'
+RP_LOVE='#EB6F92'
+RP_GOLD='#F6C177'
+RP_ROSE='#EBBCBA'
+RP_PINE='#31748F'
+RP_FOAM='#9CCFD8'
+RP_IRIS='#C4A7E7'
+
 
 ### Segments of the prompt, default order declaration
 
@@ -28,7 +35,7 @@ typeset -aHg AGNOSTER_PROMPT_SEGMENTS=(
 
 CURRENT_BG='NONE'
 if [[ -z "$PRIMARY_FG" ]]; then
-	PRIMARY_FG=black
+	PRIMARY_FG=$RP_IRIS
 fi
 
 # Characters
@@ -75,7 +82,7 @@ prompt_context() {
   local user=`whoami`
 
   if [[ "$user" != "$DEFAULT_USER" || -n "$SSH_CONNECTION" ]]; then
-    prompt_segment $PRIMARY_FG default " %(!.%{%F{yellow}%}.)$user@%m "
+    prompt_segment $PRIMARY_FG default " %(!.%{%F{$RP_GOLD}%}.)$user@%m "
   fi
 }
 
@@ -88,7 +95,7 @@ prompt_git() {
   ref="$vcs_info_msg_0_"
   if [[ -n "$ref" ]]; then
     if is_dirty; then
-      color=yellow
+      color=$RP_GOLD
       ref="${ref} $PLUSMINUS"
     else
       color=green
@@ -106,7 +113,7 @@ prompt_git() {
 #### EDITED
 # Dir: current working directory
 prompt_dir() {
-  prompt_segment $ROSE_BASE $PRIMARY_FG ' %~ ' # Original Value Blue
+  prompt_segment $RP_BASE $PRIMARY_FG ' %~ ' # Original Value Blue
 }
 
 # Status:
@@ -116,8 +123,8 @@ prompt_dir() {
 prompt_status() {
   local symbols
   symbols=()
-  [[ $RETVAL -ne 0 ]] && symbols+="%{%F{red}%}$CROSS"
-  [[ $UID -eq 0 ]] && symbols+="%{%F{yellow}%}$LIGHTNING"
+  [[ $RETVAL -ne 0 ]] && symbols+="%{%F{$RP_LOVE}%}$CROSS"
+  [[ $UID -eq 0 ]] && symbols+="%{%F{$RP_GOLD}%}$LIGHTNING"
   [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="%{%F{cyan}%}$GEAR"
 
   [[ -n "$symbols" ]] && prompt_segment $PRIMARY_FG default " $symbols "
