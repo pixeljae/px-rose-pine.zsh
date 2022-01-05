@@ -1,13 +1,15 @@
 # vim:ft=zsh ts=2 sw=2 sts=2
-#
-# Rose Pine Theme
-# A recoloring of agnoster's theme with rose-pine colors.
-#
-# # README
+# ====================================================================
+
+# ROSE PINE THEME ZSH
+# Author: http://github.com/pixeljae
+# A modified version of agnoster's OH-MY-ZSH theme with rose-pine colors.
+
+# README
 # In order for this theme to render correctly, you will need a
 # [Powerline-patched font](https://gist.github.com/1595572).
-#
 
+# ====================================================================
 
 # ROSE PINE PALETTE
 # Referenced here (https://rosepinetheme.com/palette.html#rose-pine)
@@ -20,9 +22,7 @@ RP_PINE='#31748F'
 RP_FOAM='#9CCFD8'
 RP_IRIS='#C4A7E7'
 
-
 ### Segments of the prompt, default order declaration
-
 typeset -aHg AGNOSTER_PROMPT_SEGMENTS=(
     prompt_status
     prompt_context
@@ -34,10 +34,9 @@ typeset -aHg AGNOSTER_PROMPT_SEGMENTS=(
 
 ### Segment drawing
 # A few utility functions to make it easy and re-usable to draw segmented prompts
-
 CURRENT_BG='NONE'
 if [[ -z "$PRIMARY_FG" ]]; then
-	PRIMARY_FG=$RP_BASE
+	PRIMARY_FG=$RP_BASE # Orig. Value was black, but rose pine likes it a bit lighter
 fi
 
 # Characters
@@ -78,13 +77,12 @@ prompt_end() {
 
 ### Prompt components
 # Each component will draw itself, and hide itself if no information needs to be shown
-
 # Context: user@hostname (who am I and where am I)
 prompt_context() {
   local user=`whoami`
 
   if [[ "$user" != "$DEFAULT_USER" || -n "$SSH_CONNECTION" ]]; then
-    prompt_segment $PRIMARY_FG default " %(!.%{%F{$RP_FOAM}%}.)$user@%m "
+    prompt_segment $PRIMARY_FG default " %(!.%{%F{$RP_FOAM}%}.)$user@%m " # Orig. Value is {yellow}
   fi
 }
 
@@ -97,10 +95,10 @@ prompt_git() {
   ref="$vcs_info_msg_0_"
   if [[ -n "$ref" ]]; then
     if is_dirty; then
-      color=$RP_LOVE
+      color=$RP_LOVE # Love is for when your git is dirty
       ref="${ref} $PLUSMINUS"
     else
-      color=$RP_ROSE
+      color=$RP_ROSE # Rose for when your git is clean
       ref="${ref} "
     fi
     if [[ "${ref/.../}" == "$ref" ]]; then
@@ -112,9 +110,9 @@ prompt_git() {
     print -n " $ref"
   fi
 }
-#### EDITED
+
+#### PX-Note: Original Value was blue $PRIMARY_FG (Format = ...Background...Foreground...) but rose pine likes softer colors
 # Dir: current working directory
-# Original Value Blue $PRIMARY_FG (Format = ...Background...Foreground...)
 prompt_dir() {
 	prompt_segment $RP_OVERLAY $RP_IRIS ' %~ ' 
 }
@@ -130,12 +128,12 @@ prompt_status() {
   [[ $UID -eq 0 ]] && symbols+="%{%F{$RP_GOLD}%}$LIGHTNING" # Orig. Value: yellow
   [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="%{%F{$RP_FOAM}%}$GEAR" # Orig. value. cyan
 
-	#### PX-Note: Original value is ...$PRIMARY_FG default...
+	#### PX-Note: Original value was...$PRIMARY_FG default...
   [[ -n "$symbols" ]] && prompt_segment $RP_BASE default " $symbols "
 }
 
 # Display current virtual environment
-#### PX-Note: Can't test this cause no virtualenv on my system :(
+#### PX-Note: Can't test this cause no virtualenv on my system :(  Someone do something cause I won't bother
 prompt_virtualenv() {
   if [[ -n $VIRTUAL_ENV ]]; then
     color=$RP_GOLD
