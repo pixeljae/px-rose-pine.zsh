@@ -9,9 +9,10 @@
 #
 
 
-#### Rose Pine colors
+# ROSE PINE PALETTE
+# Referenced here (https://rosepinetheme.com/palette.html#rose-pine)
 RP_BASE='#191724'
-RP_OVERLAY='#555169'
+RP_OVERLAY='#26233A'
 RP_LOVE='#EB6F92'
 RP_GOLD='#F6C177'
 RP_ROSE='#EBBCBA'
@@ -129,7 +130,8 @@ prompt_status() {
   [[ $UID -eq 0 ]] && symbols+="%{%F{$RP_GOLD}%}$LIGHTNING"
   [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="%{%F{cyan}%}$GEAR"
 
-  [[ -n "$symbols" ]] && prompt_segment $RP_OVERLAY default " $symbols " # Original value $PRIMARY_FG
+	# Original value $PRIMARY_FG default
+  [[ -n "$symbols" ]] && prompt_segment $RP_OVERLAY default " $symbols "
 }
 
 # Display current virtual environment
