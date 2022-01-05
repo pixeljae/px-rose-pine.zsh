@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://github.com/rose-pine/rose-pine-theme/raw/main/assets/icon.png" width="80" />
+    <img src="https://github.com/pixeljae/px-rose-pine.zsh/blob/main/assets/logo.png?raw=true" width="80" />
     <h2 align="center">Personal Rosé Pine theme for Oh-My-Zsh</h2>
 </p>
 
