@@ -11,7 +11,7 @@
 
 #### Rose Pine colors
 RP_BASE='#191724'
-RP_OVERLAY='#3A384A'
+RP_OVERLAY='#555169'
 RP_LOVE='#EB6F92'
 RP_GOLD='#F6C177'
 RP_ROSE='#EBBCBA'
@@ -114,7 +114,7 @@ prompt_git() {
 #### EDITED
 # Dir: current working directory
 prompt_dir() {
-  prompt_segment $RP_OVERLAY $PRIMARY_FG ' %~ ' # Original Value Blue
+  prompt_segment $RP_ROSE $PRIMARY_FG ' %~ ' # Original Value Blue
 }
 
 # Status:
